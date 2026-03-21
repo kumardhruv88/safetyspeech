@@ -2,16 +2,21 @@
 
 **A Production-Grade Multi-Label Toxic Content Detection System**
 
+![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-orange?style=for-the-badge&logo=pytorch&logoColor=white)
+![Transformers](https://img.shields.io/badge/Transformers-Hugging_Face-yellow?style=for-the-badge&logo=huggingface)
+![Gradio](https://img.shields.io/badge/Gradio-UI-ff69b4?style=for-the-badge)
+
 [Launch Live Application](https://huggingface.co/spaces/aryan012234/safetyspeech-app)
 
 ---
 
 ## Overview
 
-SafetySpeech is a high-accuracy AI system designed to analyze social media text, forum posts, and user-generated submissions, automatically detecting harmful content and categorizing it by type for human review. Built on a fine-tuned BERT transformer architecture, the system performs multi-label classification across four behavioral categories:
+SafetySpeech is a high-accuracy AI system engineered to analyze social media text, forum posts, and user-generated content — automatically identifying harmful material and classifying it by category for downstream human review. The system is built on a fine-tuned BERT transformer and performs multi-label classification across four behavioral categories:
 
 - **Normal** — Safe, non-toxic content
-- **Depression** — Expressions of hopelessness, self-harm ideation, or grief
+- **Depression** — Expressions of hopelessness, self-harm ideation, or acute grief
 - **Hate Speech** — Targeted abuse based on race, gender, religion, or political affiliation
 - **Violent** — Threats, incitement to violence, or language promoting physical harm
 
@@ -19,7 +24,7 @@ SafetySpeech is a high-accuracy AI system designed to analyze social media text,
 
 ## Model & Technical Specifications
 
-SafetySpeech is built on state-of-the-art Natural Language Processing transformers, fine-tuned for extreme behavioral context recognition.
+SafetySpeech is fine-tuned on top of a state-of-the-art NLP transformer backbone, optimized specifically for extreme behavioral context recognition.
 
 | Parameter | Value |
 |---|---|
@@ -34,7 +39,7 @@ SafetySpeech is built on state-of-the-art Natural Language Processing transforme
 
 ### Performance Metrics
 
-Evaluated on a held-out test split:
+All metrics are evaluated against a held-out test split unseen during training:
 
 | Metric | Score |
 |---|---|
@@ -45,7 +50,7 @@ Evaluated on a held-out test split:
 
 ### Training Data
 
-The model was fine-tuned on a curated, multi-source compilation of approximately 330,000 human-annotated samples:
+The model was trained on a curated, multi-source corpus of approximately 330,000 human-annotated samples spanning a broad range of toxicity signals:
 
 | Dataset | Volume | Coverage |
 |---|---|---|
@@ -58,7 +63,7 @@ The model was fine-tuned on a curated, multi-source compilation of approximately
 
 ## System Architecture
 
-The end-to-end pipeline spans active data collection through high-performance inference via a fine-tuned Transformer backend.
+The end-to-end pipeline spans data ingestion, preprocessing, model fine-tuning, and real-time inference via a hosted Transformer backend.
 
 ```mermaid
 graph TD

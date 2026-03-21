@@ -36,7 +36,34 @@ SafetySpeech is a highly accurate AI system designed to intelligently analyze so
 * **Hate Speech:** Racial, gender, religious, or political targeted abuse
 * **Violent:** Threats, incitement to violence, and physical harm
 
-Each prediction returns mathematically rigorous confidence scores and assigns an overall severity level (Safe, Low, Medium, High). 
+---
+
+## 🧠 Model & Technical Specifications
+
+SafetySpeech is built on top of state-of-the-art Natural Language Processing transformers, fine-tuned specifically for extreme behavioral context recognition.
+
+* **Base Architecture:** `bert-base-uncased`
+* **Total Parameters:** ~110 Million
+* **Vocabulary Size:** 30,522 tokens
+* **Max Sequence Length:** 128 tokens
+* **Optimizer:** AdamW (Learning Rate: 2e-5)
+* **Training Hardware:** NVIDIA GPU T4 x2
+* **Total Training Time:** ~60 Minutes (5 Epochs)
+* **Loss Function:** `BCEWithLogitsLoss` (with positive weight balancing)
+
+### 📊 Performance Metrics
+The model achieves rigorous accuracy across all highly sensitive labels on an unseen test split:
+* **Overall Micro F1 Score:** `0.8489`
+* **Overall Macro F1 Score:** `0.6299`
+* **Label - Hate Speech F1:** `> 0.81`
+* **Label - Depressive F1:** `> 0.79`
+
+### 📚 Training Datasets
+The model was fine-tuned on a robust, multi-source compilation of nearly 330,000 human-annotated inputs:
+1. **Jigsaw Toxic Comments:** ~160,000 samples (general toxicity, threats, insults)
+2. **Davidson Hate Speech:** ~25,000 samples (hate speech vs offensive language)
+3. **Depression Reddit:** ~7,700 samples (clinical depression indicators)
+4. **UCSD Measuring Hate Speech:** ~135,000 samples (diverse hate speech benchmarks)
 
 ---
 
@@ -78,22 +105,20 @@ sequenceDiagram
 
 ## 📂 Project Structure
 
-```mermaid
-graph LR
-    Root[safetyspeech/] --> Data[data/]
-    Root --> Source[src/]
-    Root --> Models[models/]
-    
-    Data --> Raw[raw/]
-    Data --> Proc[processed/]
-    
-    Source --> Collect[collect/]
-    Source --> Preprocess[preprocess/]
-    Source --> ModelSrc[models/]
-    Source --> UI[ui/]
-    
-    Models --> Checkpoints[checkpoints/]
-    Checkpoints --> Token[tokenizer/]
+```text
+safetyspeech/
+├── data/
+│   ├── raw/                 # Raw downloaded CSV data
+│   └── processed/           # Cleaned train/val/test splits
+├── models/                  
+│   └── checkpoints/         # Pre-trained .pt weights
+│       └── tokenizer/       # BERT vocab parameters
+└── src/
+    ├── collect/             # Scrapers for Reddit/X
+    ├── preprocess/          # Text cleaning and tokenization
+    ├── models/              # GuardianBERT PyTorch classes
+    ├── inference/           # Real-time predictor modules
+    └── ui/                  # Gradio application server
 ```
 
 ---
@@ -116,17 +141,6 @@ python train.py --config config.yaml
 ### 3. Launching Locally
 ```bash
 python app.py
-```
-
----
-
-## ☁️ Deployment
-
-SafetySpeech is natively containerized for Docker, making it inherently ready for Hugging Face Spaces or AWS deployment.
-
-```bash
-docker build -t safetyspeech-app .
-docker run -p 7860:7860 safetyspeech-app
 ```
 
 *This application is strictly designed for research and AI safety moderation assistance. It does not replace human judgment.*

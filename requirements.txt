@@ -1,0 +1,47 @@
+# Deep Learning & NLP
+torch==2.2.0
+torchvision==0.17.0
+transformers==4.38.2
+tokenizers==0.15.2
+datasets==2.18.0
+accelerate==0.27.2
+
+# Data Collection
+praw==7.7.1
+snscrape==0.7.0.20230622
+tweepy==4.14.0
+
+# Data Processing
+pandas==2.2.1
+numpy==1.26.4
+scikit-learn==1.4.1
+imbalanced-learn==0.12.0
+emoji==2.11.0
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# UI
+gradio==4.21.0
+streamlit==1.32.2
+plotly==5.19.0
+wordcloud==1.9.3
+matplotlib==3.8.3
+seaborn==0.13.2
+
+# Model Export
+onnx==1.16.0
+onnxruntime==1.17.1
+
+# Utilities
+pyyaml==6.0.1
+tqdm==4.66.2
+loguru==0.7.2
+python-dotenv==1.0.1
+huggingface_hub==0.21.4
+
+# Evaluation
+scipy==1.12.0
+
+# Notebooks
+ipykernel==6.29.3
+nbformat==5.10.4

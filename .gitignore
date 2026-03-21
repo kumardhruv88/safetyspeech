@@ -1,0 +1,30 @@
+# Python cache and environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+guardian_env/
+.env
+
+# Data and logs
+data/
+outputs/
+runs/
+*.log
+error*.txt
+
+# IDE
+.vscode/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Temporary and Zips
+*.zip
+.gradio/
+
+# Models
+models/

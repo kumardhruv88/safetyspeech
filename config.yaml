@@ -1,0 +1,37 @@
+model:
+  name: bert-base-uncased
+  num_labels: 4
+  max_length: 128
+  dropout: 0.3
+
+training:
+  batch_size: 16
+  learning_rate: 2.0e-5
+  num_epochs: 5
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  seed: 42
+  device: cuda          # change to 'cpu' if no GPU
+  gradient_accumulation_steps: 1
+
+data:
+  train_path: data/processed/train.csv
+  val_path: data/processed/val.csv
+  test_path: data/processed/test.csv
+  label_cols: [normal, depressive, hate_speech, violent]
+  raw_combined: data/raw/combined_raw.csv
+
+inference:
+  threshold: 0.5
+  model_path: models/checkpoints/best_model.pt
+  tokenizer_path: models/checkpoints/tokenizer/
+
+ui:
+  gradio_port: 7860
+  streamlit_port: 8501
+  share: true
+
+logging:
+  log_dir: runs/
+  report_dir: outputs/reports/
+  viz_dir: outputs/visualizations/

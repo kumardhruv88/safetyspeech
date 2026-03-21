@@ -1,3 +1,5 @@
+<div align="center">
+
 # SafetySpeech
 
 **A Production-Grade Multi-Label Toxic Content Detection System**
@@ -8,6 +10,8 @@
 ![Gradio](https://img.shields.io/badge/Gradio-UI-ff69b4?style=for-the-badge)
 
 [Launch Live Application](https://huggingface.co/spaces/aryan012234/safetyspeech-app)
+
+</div>
 
 ---
 

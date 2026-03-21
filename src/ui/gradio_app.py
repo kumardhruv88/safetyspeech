@@ -273,6 +273,7 @@ if __name__ == "__main__":
             config = yaml.safe_load(f)
 
     demo.launch(
+        server_name="0.0.0.0",
         server_port=config.get("ui", {}).get("gradio_port", 7860),
         share=config.get("ui", {}).get("share", False),
         inbrowser=True,

@@ -41,6 +41,7 @@ def launch_gradio(config: dict) -> None:
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     from src.ui.gradio_app import demo
     demo.launch(
+        server_name="0.0.0.0",
         server_port=config.get("ui", {}).get("gradio_port", 7860),
         share=config.get("ui", {}).get("share", False),
         inbrowser=True,

@@ -1,10 +1,5 @@
 FROM python:3.10-slim
 
-# Metadata
-LABEL maintainer="GUARDIAN-NLP Team"
-LABEL description="UN NGO AI Safety Division Toxic Content Detector"
-LABEL version="1.0.0"
-
 # System dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
@@ -13,19 +8,23 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
-WORKDIR /app
+# Set up a new user named "user" with user ID 1000 (Required by HF Spaces)
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+	PATH=/home/user/.local/bin:$PATH
 
-# Copy requirements first for better Docker layer caching
-COPY requirements.txt .
+WORKDIR $HOME/app
 
-# Install Python dependencies (CPU-only torch for smaller image)
+# Copy requirements entirely
+COPY --chown=user requirements.txt .
+
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy project files
-COPY . .
+COPY --chown=user . .
 
 # Create necessary directories
 RUN python setup_structure.py
@@ -34,12 +33,12 @@ RUN python setup_structure.py
 EXPOSE 7860 8501
 
 # Default environment
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=$HOME/app
 ENV PYTHONUNBUFFERED=1
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:7860 || exit 1
+    CMD curl -f http://0.0.0.0:7860 || exit 1
 
 # Default command: launch Gradio analyzer
 CMD ["python", "app.py", "--mode", "gradio"]

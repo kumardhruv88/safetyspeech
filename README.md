@@ -1,4 +1,12 @@
-# 🛡️ GUARDIAN-NLP
+---
+title: SafetySpeech App
+emoji: 🛡️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+# 🛡️ SafetySpeech
 ### United Nations NGO × Social Media Platform AI Safety Division
 **GUARDIAN-NLP** is a production-grade, multi-label toxic content detection system powered by fine-tuned BERT, designed for UN analysts and NGO moderators to scan, flag, and report harmful content at scale.
 

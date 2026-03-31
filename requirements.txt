@@ -13,7 +13,7 @@ scikit-learn>=1.4.1
 emoji==2.11.0
 
 # UI
-gradio==4.21.0
+gradio==4.44.1
 
 # Utilities
 pyyaml==6.0.1

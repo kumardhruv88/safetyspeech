@@ -1,6 +1,5 @@
 # Deep Learning & NLP
 torch==2.2.0
-torchvision==0.17.0
 transformers==4.38.2
 tokenizers==0.15.2
 datasets==2.18.0

@@ -29,7 +29,7 @@ inference:
 ui:
   gradio_port: 7860
   streamlit_port: 8501
-  share: true
+  share: false
 
 logging:
   log_dir: runs/
